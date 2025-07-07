@@ -53,8 +53,7 @@ def download_subtitle(url, filename=None):
     if not filename: filename = url.split('/')[-1]
     response = requests.get(url)
     if response.status_code != 200:
-        print(f"Error downloading subtitle from {url}")
         return None
     with open(filename, 'wb') as file:
         file.write(response.content)
-    print(f"Subtitle downloaded as {filename}")
+    return filename
