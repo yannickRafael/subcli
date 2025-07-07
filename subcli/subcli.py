@@ -1,5 +1,5 @@
 import click
-from get_subtitle import search_subtitle_options, get_subtitle, download_subtitle
+from subcli.get_subtitle import search_subtitle_options, get_subtitle_options, download_subtitle
 from InquirerPy import inquirer
 
 @click.command()
@@ -22,7 +22,7 @@ def subcli(movie):
     ).execute()
 
     url = results[selection][0]
-    languages = get_subtitle(url)
+    languages = get_subtitle_options(url)
     choices = list(languages.keys())
 
     selection = inquirer.select(

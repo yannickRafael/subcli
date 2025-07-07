@@ -30,7 +30,7 @@ def search_subtitle_options(movie_name):
     print(f"Found {len(results)} subtitles for '{movie_name}':")
     return results
 
-def get_subtitle(url, filename=None):
+def get_subtitle_options(url, filename=None):
     if not filename: filename = time.strftime("%Y-%m-%d_%H-%M-%S") + '.zip'
     response = requests.get(url)
     if response.status_code != 200:
