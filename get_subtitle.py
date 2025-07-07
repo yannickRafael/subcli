@@ -2,7 +2,7 @@ import requests
 import time
 from bs4 import BeautifulSoup
 
-def search_subtitle(movie_name):
+def search_subtitle_options(movie_name):
     url = f'https://subtitlecat.com/index.php?search={movie_name.replace(" ", "+")}'
     response = requests.get(url)
     if response.status_code != 200:
@@ -51,9 +51,3 @@ def get_subtitle(url, filename=None):
             subtitles.append((language, link))
     
     return subtitles
-
-r = get_subtitle('https://subtitlecat.com/subs/125/Ultimate%20Spider-Man%20-%20S03E18%20-%20Ant-Man..html')
-
-for lang, link in r:
-    print(f"Language: {lang}, Link: {link}")
-    print('--------------------------')
