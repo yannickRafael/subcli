@@ -3,8 +3,13 @@ import time
 from bs4 import BeautifulSoup
 
 def search_subtitle_options(movie_name):
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/91.0.4472.124 Safari/537.36"
+    }
     url = f'https://subtitlecat.com/index.php?search={movie_name.replace(" ", "+")}'
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     if response.status_code != 200:
         print(f"Error fetching data from {url}")
         return []
@@ -22,6 +27,9 @@ def search_subtitle_options(movie_name):
         nr_of_downloads = tds[2].text.strip()
         nr_of_languages = tds[3].text.strip()
 
+        print(f"Title: {title},\nURL: {rurl},\nDownloads: {nr_of_downloads},\nLanguages: {nr_of_languages}")
+        print('-' * 40)
+
         results[title] = (rurl, nr_of_downloads, nr_of_languages)
     
     if not results:
@@ -32,7 +40,12 @@ def search_subtitle_options(movie_name):
 
 def get_subtitle_options(url, filename=None):
     if not filename: filename = time.strftime("%Y-%m-%d_%H-%M-%S") + '.zip'
-    response = requests.get(url)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/91.0.4472.124 Safari/537.36"
+    }
+    response = requests.get(url, headers=headers)
     if response.status_code != 200:
         print(f"Error fetching data from {url}")
         return None
@@ -51,9 +64,16 @@ def get_subtitle_options(url, filename=None):
 
 def download_subtitle(url, filename=None):
     if not filename: filename = url.split('/')[-1]
-    response = requests.get(url)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/91.0.4472.124 Safari/537.36"
+    }
+    response = requests.get(url, headers=headers)
     if response.status_code != 200:
         return None
     with open(filename, 'wb') as file:
         file.write(response.content)
     return filename
+
+print(search_subtitle_options("Ant-Man and The Wasp: Quantumania"))
