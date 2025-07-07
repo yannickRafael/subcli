@@ -1,4 +1,5 @@
 import requests
+import time
 from bs4 import BeautifulSoup
 
 def search_subtitle(movie_name):
@@ -31,5 +32,28 @@ def search_subtitle(movie_name):
     print(f"Found {len(results)} subtitles for '{movie_name}':")
     return results
 
-def get_subtitle(url):
-    pass
+def get_subtitle(url, filename=None):
+    if not filename: filename = time.strftime("%Y-%m-%d_%H-%M-%S") + '.zip'
+    response = requests.get(url)
+    if response.status_code != 200:
+        print(f"Error fetching data from {url}")
+        return None
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    results = soup.find('div', class_='all-sub').find_all('div', class_='row')[1].find_all('div', class_='sub-single')
+    subtitles = []
+    for result in results:
+        a = result.find('a')
+        if a:
+            link = 'https://subtitlecat.com/'+a['href'] 
+            language = result.find_all('span')[1].text.strip()
+
+            subtitles.append((language, link))
+    
+    return subtitles
+
+r = get_subtitle('https://subtitlecat.com/subs/125/Ultimate%20Spider-Man%20-%20S03E18%20-%20Ant-Man..html')
+
+for lang, link in r:
+    print(f"Language: {lang}, Link: {link}")
+    print('--------------------------')
