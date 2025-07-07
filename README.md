@@ -1,44 +1,52 @@
 # SubCLI – Subtitle Downloader from SubtitleCat
 
-**SubCLI** is a Python command-line tool that helps you quickly search and download movie subtitles from [subtitlecat.com](https://subtitlecat.com), all from your terminal.
+**SubCLI** é uma ferramenta de linha de comando (CLI) em Python que permite pesquisar e baixar legendas de filmes a partir do site [subtitlecat.com](https://subtitlecat.com), diretamente pelo terminal.
 
 ---
 
 ## Features
 
-- Search for subtitles by movie name  
-- Choose from available language options  
-- Download selected subtitle as a `.srt`  
-- Simple, interactive CLI with arrow-key navigation  
-- Clean terminal interface using [Click](https://palletsprojects.com/p/click/) and [InquirerPy](https://github.com/kazhala/InquirerPy)
+- Pesquisa de legendas por nome do filme  
+- Escolha entre opções de idioma disponíveis  
+- Download da legenda selecionada como arquivo `.zip`  
+- Interface CLI interativa com navegação por setas  
+- Baseado nas bibliotecas [Click](https://palletsprojects.com/p/click/) e [InquirerPy](https://github.com/kazhala/InquirerPy)
 
 ---
 
 ## Installation
 
-> Requires **Python 3.6+**
+> Requer **Python 3.6+**
 
-### 1. Clone the project
+### Opção 1 – Instalação via PyPI (recomendado)
+
+```bash
+pip install subcli
+````
+
+### Opção 2 – Instalação via Código-fonte
+
+1. Clone o projeto:
 
 ```bash
 git clone https://github.com/yourusername/subcli.git
 cd subcli
-````
+```
 
-### 2. Create a virtual environment (optional but recommended)
+2. Crie um ambiente virtual (opcional, mas recomendado):
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
+source .venv/bin/activate  # No Windows use `.venv\Scripts\activate`
 ```
 
-### 3. Install dependencies
+3. Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Install CLI locally
+4. Instale o CLI localmente:
 
 ```bash
 pip install .
@@ -48,18 +56,18 @@ pip install .
 
 ## Usage
 
-Once installed, you can run:
+Depois da instalação, você pode rodar:
 
 ```bash
 subcli "John Wick 4"
 ```
 
-### What it does:
+### O que acontece:
 
-1. Searches SubtitleCat for results
-2. Shows you a list of subtitle versions
-3. Lets you pick a language
-4. Downloads the subtitle `.zip` to the current folder
+1. O programa busca resultados no SubtitleCat
+2. Exibe uma lista de versões de legendas
+3. Permite selecionar o idioma desejado
+4. Faz o download da legenda `.zip` no diretório atual
 
 ---
 
@@ -79,8 +87,8 @@ Found 12 subtitles for 'The Matrix':
    Portuguese
    Spanish
 
- You selected: English
- File downloaded as: The.Matrix.1999.YIFY.English.zip
+You selected: English
+File downloaded as: The.Matrix.1999.YIFY.English.zip
 ```
 
 ---
@@ -91,8 +99,8 @@ Found 12 subtitles for 'The Matrix':
 subcli/
 ├── subcli/
 │   ├── __init__.py
-│   ├── cli.py               # CLI entrypoint
-│   └── get_subtitle.py      # Core logic for scraping & downloading
+│   ├── cli.py               # Ponto de entrada da CLI
+│   └── get_subtitle.py      # Lógica de scraping e download
 ├── setup.py
 ├── README.md
 └── requirements.txt
@@ -102,13 +110,13 @@ subcli/
 
 ## Disclaimer
 
-This tool scrapes content from [subtitlecat.com](https://subtitlecat.com). Use it responsibly and respect subtitle licensing where applicable.
+Este projeto realiza scraping de conteúdo do site [subtitlecat.com](https://subtitlecat.com). Use-o de forma responsável e respeite as licenças associadas às legendas.
 
 ---
 
 ## Author
 
-Developed by yannickRafael – feel free to fork or contribute.
+Desenvolvido por yannickRafael – contribuições e forks são bem-vindos.
 
 ---
 
