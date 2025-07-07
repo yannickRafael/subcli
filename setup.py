@@ -10,7 +10,7 @@ setup(
     install_requires=["click", "requests", "beautifulsoup4", "InquirerPy"],
     entry_points={
         "console_scripts": [
-            "subcli=subcli.subcli:main",
+            "subcli=subcli.subcli:subcli",
         ],
     },
     author="yannickRafael",
