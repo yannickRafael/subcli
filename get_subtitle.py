@@ -18,7 +18,7 @@ def search_subtitle(movie_name):
         tds = row.find_all('td')
 
         title = tds[0].find('a').text.strip()
-        rurl = tds[0].find('a')['href']
+        rurl = 'https://subtitlecat.com/'+tds[0].find('a')['href']
         nr_of_downloads = tds[2].text.strip()
         nr_of_languages = tds[3].text.strip()
 
@@ -30,3 +30,6 @@ def search_subtitle(movie_name):
         return []   
     print(f"Found {len(results)} subtitles for '{movie_name}':")
     return results
+
+def get_subtitle(url):
+    pass
