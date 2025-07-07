@@ -2,14 +2,9 @@ import click
 from get_subtitle import search_subtitle_options, get_subtitle, download_subtitle
 from InquirerPy import inquirer
 
-@click.group()
-def cli():
-    """A simple CLI app with Click."""
-    pass
-
-@cli.command()
+@click.command()
 @click.argument('movie')
-def get(movie):
+def subcli(movie):
     results = search_subtitle_options(movie)
 
     if not results:
@@ -45,4 +40,4 @@ def get(movie):
     click.secho(f"File downloaded as: {file}", fg="blue")
 
 if __name__ == '__main__':
-    cli()
+    subcli()
