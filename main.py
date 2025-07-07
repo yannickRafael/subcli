@@ -27,17 +27,21 @@ def get(movie):
     ).execute()
 
     url = results[selection][0]
-    subtitles = get_subtitle(url)
+    languages = get_subtitle(url)
+    choices = list(languages.keys())
 
     selection = inquirer.select(
         message="Select a subtitle language:",
-        default=subtitles[0][0],
-        choices=[lang for lang, _ in subtitles],
+        default=choices[0],
+        choices=choices,
         pointer='=>',
         instruction='Use arrow keys to navigate and Enter to select.',
     ).execute()
 
     click.secho(f"You selected: {selection}", fg="green")
+
+    link = languages[selection]
+    click.secho(f"Download link: {link}", fg="blue")
 
 if __name__ == '__main__':
     cli()
