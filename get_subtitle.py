@@ -43,7 +43,7 @@ def get_subtitle(url, filename=None):
     for result in results:
         a = result.find('a')
         if a:
-            link = 'https://subtitlecat.com/'+a['href'] 
+            link = 'https://subtitlecat.com'+a['href'] 
             language = result.find_all('span')[1].text.strip()
             subtitles[language] = link
     
