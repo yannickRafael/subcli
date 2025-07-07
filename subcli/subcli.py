@@ -23,6 +23,10 @@ def subcli(movie):
 
     url = results[selection][0]
     languages = get_subtitle_options(url)
+
+    if not languages:
+        click.echo("No subtitles found for the selected movie.")
+        return
     choices = list(languages.keys())
 
     selection = inquirer.select(
@@ -37,6 +41,9 @@ def subcli(movie):
 
     link = languages[selection]
     file = download_subtitle(link)
+    if not file:
+        click.secho("Failed to download the subtitle.", fg="red")
+        return
     click.secho(f"File downloaded as: {file}", fg="blue")
 
 if __name__ == '__main__':

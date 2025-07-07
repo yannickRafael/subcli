@@ -11,8 +11,7 @@ def search_subtitle_options(movie_name):
     url = f'https://subtitlecat.com/index.php?search={movie_name.replace(" ", "+")}'
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
-        print(f"Error fetching data from {url}")
-        return []
+        return None
     soup = BeautifulSoup(response.text, 'html.parser')
     
     tr = ((soup.find('div', class_='subtitles')).find('table', class_='table sub-table')).find('tbody').find_all('tr')
@@ -27,15 +26,10 @@ def search_subtitle_options(movie_name):
         nr_of_downloads = tds[2].text.strip()
         nr_of_languages = tds[3].text.strip()
 
-        print(f"Title: {title},\nURL: {rurl},\nDownloads: {nr_of_downloads},\nLanguages: {nr_of_languages}")
-        print('-' * 40)
-
         results[title] = (rurl, nr_of_downloads, nr_of_languages)
     
     if not results:
-        print("No subtitles found.")
-        return {}   
-    print(f"Found {len(results)} subtitles for '{movie_name}':")
+        return None   
     return results
 
 def get_subtitle_options(url, filename=None):
@@ -47,7 +41,6 @@ def get_subtitle_options(url, filename=None):
     }
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
-        print(f"Error fetching data from {url}")
         return None
     soup = BeautifulSoup(response.text, 'html.parser')
     
@@ -75,5 +68,3 @@ def download_subtitle(url, filename=None):
     with open(filename, 'wb') as file:
         file.write(response.content)
     return filename
-
-print(search_subtitle_options("Ant-Man and The Wasp: Quantumania"))
