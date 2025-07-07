@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name="subcli",
-    version="0.1.0",
+    version="0.1.1",
     packages=find_packages(),
     install_requires=["click", "requests", "beautifulsoup4", "InquirerPy"],
     entry_points={
@@ -16,6 +16,7 @@ setup(
     author="yannickRafael",
     description="A CLI tool to download subtitles",
     long_description_content_type='text/markdown',
+    long_description=description,
     classifiers=["Programming Language :: Python :: 3"],
     python_requires=">=3.6",
 )
