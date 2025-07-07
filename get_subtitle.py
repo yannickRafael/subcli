@@ -39,13 +39,12 @@ def get_subtitle(url, filename=None):
     soup = BeautifulSoup(response.text, 'html.parser')
     
     results = soup.find('div', class_='all-sub').find_all('div', class_='row')[1].find_all('div', class_='sub-single')
-    subtitles = []
+    subtitles = {}
     for result in results:
         a = result.find('a')
         if a:
             link = 'https://subtitlecat.com/'+a['href'] 
             language = result.find_all('span')[1].text.strip()
-
-            subtitles.append((language, link))
+            subtitles[language] = link
     
     return subtitles
