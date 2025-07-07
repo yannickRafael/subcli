@@ -1,5 +1,5 @@
 import click
-from get_subtitle import search_subtitle_options, get_subtitle
+from get_subtitle import search_subtitle_options, get_subtitle, download_subtitle
 from InquirerPy import inquirer
 
 @click.group()
@@ -41,7 +41,8 @@ def get(movie):
     click.secho(f"You selected: {selection}", fg="green")
 
     link = languages[selection]
-    click.secho(f"Download link: {link}", fg="blue")
+    file = download_subtitle(link)
+    click.secho(f"File downloaded as: {file}", fg="blue")
 
 if __name__ == '__main__':
     cli()
