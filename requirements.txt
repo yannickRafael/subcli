@@ -2,3 +2,6 @@ requests
 beautifulsoup4
 click
 InquirerPy
+wheel
+setuptools
+twine
