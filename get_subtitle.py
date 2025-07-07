@@ -10,10 +10,9 @@ def search_subtitle_options(movie_name):
         return []
     soup = BeautifulSoup(response.text, 'html.parser')
     
-    #get div with class subtitles
     tr = ((soup.find('div', class_='subtitles')).find('table', class_='table sub-table')).find('tbody').find_all('tr')
 
-    results = []
+    results = {}
 
     for row in tr:
         tds = row.find_all('td')
@@ -23,12 +22,11 @@ def search_subtitle_options(movie_name):
         nr_of_downloads = tds[2].text.strip()
         nr_of_languages = tds[3].text.strip()
 
-        result = (title, rurl, nr_of_downloads, nr_of_languages)
-        results.append(result)
+        results[title] = (rurl, nr_of_downloads, nr_of_languages)
     
     if not results:
         print("No subtitles found.")
-        return []   
+        return {}   
     print(f"Found {len(results)} subtitles for '{movie_name}':")
     return results
 
