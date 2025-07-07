@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name="subcli",
-    version="0.1.1",
+    version="0.1.2",
     packages=find_packages(),
     install_requires=["click", "requests", "beautifulsoup4", "InquirerPy"],
     entry_points={
